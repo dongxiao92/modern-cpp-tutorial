@@ -245,7 +245,7 @@ You can have a `variant<>` to accommodate several types of variables provided (i
 #include <variant>
 template <size_t n, typename... T>
 constexpr std::variant<T...> _tuple_index(const std::tuple<T...>& tpl, size_t i) {
-    if constexpr (n >= sizeof...(T))
+    if constexpr (n >= sizeof...(T)-1)
         throw std::out_of_range("越界.");
     if (i == n)
         return std::variant<T...>{ std::in_place_index<n>, std::get<n>(tpl) };
